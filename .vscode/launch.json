@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\node-express-app\\bin\\www"
+            "program": "${workspaceFolder}\\ES6-usage-samples\\basics-es6"
         }
     ]
 }
