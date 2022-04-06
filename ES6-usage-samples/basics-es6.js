@@ -99,7 +99,7 @@ var ship_country = oneCountry => {
     console.log(`The selected country is ${oneCountry.africa}`)
 }
 
-oneCountry = {
+var oneCountry = {
     asia: "Oman",
     africa: "Egypt"
 }
@@ -136,7 +136,7 @@ var list_planet = {planet,size,viewPlanets}
 
 list_planet.viewPlanets()
 
-const travel_city ={
+/*const travel_city ={
     from: "Manhattan",
     to: "NY",
     differentLocation: function() {
@@ -147,7 +147,7 @@ const travel_city ={
     }
 }
 
-travel_city.differentLocation()
+travel_city.differentLocation()*/
 
 const travel ={
     from: "home",
@@ -197,7 +197,7 @@ var single_sound = "horn"
 var mixingSounds = {...obj_sound, single_sound}
 
 console.log(mixingSounds) //Will get the object with spread operator(...) and join into the other variable
-
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 //Promises
 const getFakeMembers = count => new Promise((resolves, rejects) => {
     const api = `https://api.randomuser.me/?nat=US&results=${count}`
@@ -205,15 +205,55 @@ const getFakeMembers = count => new Promise((resolves, rejects) => {
     request.open('GET', api)
     request.onload = () =>
         (request.status === 200) ? 
-        resolves(JSON.parse(request.response).results) :
+        //resolves(JSON.parse(request.responseText).results) :
+        resolves(JSON.parse(request.responseText).results) :
         reject(Error(request.statusText))
     request.onerror = (err) => rejects(err)
     request.send()
 })
 
-getFakeMembers(1).then(
+getFakeMembers(5).then(
     members => console.log(members),
     err => console.error(
         new Error("cannot load members from randomuser.me")
     )
 )
+
+//Class declaration
+class NameValidation {
+
+    constructor(name, max_length){
+        this.name = name
+        this.max_length = max_length
+    }
+
+    showValidation(){
+        console.log(`The chosen name is ${this.name} and the maximum length allowed is ${this.max_length}`)
+    }
+
+}
+
+const validate_me = new NameValidation("Heberland", 44)
+
+validate_me.showValidation()
+
+class PersonalValidation extends NameValidation{
+
+    constructor(name, max_length, cell_number, address){
+        super(name, max_length)
+        this.cell_number = cell_number
+        this.address = address
+    }
+
+    showPersonal(){
+        super.showValidation()
+        console.log(`The personal information of the above person is cellphone number ${this.cell_number} and address of ${this.address}`)
+    }
+
+}
+
+const person = new PersonalValidation("Robert", 99, "11544248748", "Alabama, US")
+person.showPersonal()
+
+const {reserve_single_book, reserve} = require('./books-commonjs.js')
+reserve_single_book("Abraham Lincoln")
