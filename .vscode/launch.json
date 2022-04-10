@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\functional_programming\\immutability"
+            "program": "${workspaceFolder}\\functional_programming\\high-order_functions"
         }
     ]
 }
