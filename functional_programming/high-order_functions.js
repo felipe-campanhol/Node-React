@@ -126,5 +126,3 @@ const betterJoinFunction = compose(
 )
 
 console.log(betterJoinFunction(new Date()))
-
-//
