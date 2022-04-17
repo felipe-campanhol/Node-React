@@ -7,8 +7,20 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from 'react';
 import './Header.css';
 import HeaderOption from './HeaderOption';
+import { useDispatch } from 'react-redux';
+import { getAuth } from 'firebase/auth';
+import { logout } from './features/userSlice';
 
 function Header() {
+
+
+  const dispatch = useDispatch()
+
+  const logOutApp = () => {
+    dispatch(logout())
+    getAuth().signOut()
+  }
+
   return (
     <div className='header'>
 
@@ -27,7 +39,7 @@ function Header() {
         <HeaderOption Icon={BusinessCenterIcon} title="BusinessCenter"/>
         <HeaderOption Icon={ChatIcon} title="Messagins"/>
         <HeaderOption Icon={NotificationsIcon} title="Notifications"/>
-        <HeaderOption avatar="https://media-exp1.licdn.com/dms/image/C4D03AQGH3GgIms1OqQ/profile-displayphoto-shrink_100_100/0/1613999843622?e=1655337600&v=beta&t=s6tA3WA9bknjuj8d7uby4Af3_cnrgkxGKWdAaE2gPss" title="me"/>
+        <HeaderOption avatar={true} title="me" onClick={logOutApp}/>
       </div>
 
     </div>
