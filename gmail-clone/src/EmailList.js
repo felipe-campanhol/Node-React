@@ -9,12 +9,28 @@ import InboxIcon from '@mui/icons-material/Inbox'
 import PeopleIcon from '@mui/icons-material/People'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import { Checkbox, IconButton } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./EmailList.css"
 import Section from './Section'
 import EmailRow from './EmailRow'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { db } from './firebase'
+import FlipMove from "react-flip-move"
 
 function EmailList() {
+    
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    onSnapshot(query(collection(db, "emails"), orderBy("timestamp", "desc")),(snapshot) => {
+        setEmails(
+            snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+            }))
+        )})
+}, []);
+
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -52,8 +68,12 @@ function EmailList() {
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
       </div>
         <div className="emailList__list">
-            <EmailRow title="Origin" subject="Hey some of the games on your wishlist are on sale" description="The sale ends in 3 days!" time="05am" />
-            <EmailRow title="Origin" subject="Hey some of the games on your wishlist are on saleHey some of the games on your wishlist are on sale" description="The sale ends in 3 days!" time="05am" />
+
+        <FlipMove>
+            {emails.map(({id, data: {to, subject, message, timestamp}}) => (
+                <EmailRow id={id} key={id} title={to} subject={subject} description={message} time={new Date(timestamp?.seconds * 1000).toUTCString()} />
+            ))}
+        </FlipMove>
         </div>
     </div>
   );
