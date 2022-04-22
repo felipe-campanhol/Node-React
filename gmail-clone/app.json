@@ -1,0 +1,8 @@
+{
+"name": "Gmail clone",
+"description": "This is Gmail clone",
+"repository": "https://git.heroku.com/gmail-clone-yt.git",
+"logo":"https://static.dezeen.com/uploads/2020/10/gmail-google-logo-rebrand-workspace-design_dezeen_2364_col_0.jpg",
+"keywords": ["react", "heroku", "gmail"],
+"image": "heroku/react"
+}
