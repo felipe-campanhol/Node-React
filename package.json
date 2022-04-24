@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "next-sanity": "^0.5.2"
+  }
+}
