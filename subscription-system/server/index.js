@@ -15,8 +15,9 @@ secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY });
 var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10' });
 
 var params = {
- TableName: 'subscription-system',
- Key: {'id': "teste"}
+ TableName: 'AccessType',
+ Key: {id: 1},
+ ProjectionExpression: 'id, access_name, price'
 };
 
 app.get("/api", (req, res) => {
