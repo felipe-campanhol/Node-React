@@ -2,13 +2,15 @@ import { useState } from "react";
 import Header from '../../components/Header'
 import {useForm, SubmitHandler} from "react-hook-form"
 import { dateType } from "aws-sdk/clients/iam";
+import { useRouter } from "next/router";
 
 interface IFormInput{
   _id: string,
   date: dateType
 }
 
-function queue(access_type) {
+function queue() {
+  const { query } = useRouter();
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -25,11 +27,10 @@ function queue(access_type) {
       setSubmitted(false)
     })
   };
-  console.log("access_type: ")
-  console.log(access_type)
+  
   return <main>
     <Header />
-    
+    <p>{query.access}</p>
     {submitted? (
       <div>
 

@@ -11,27 +11,27 @@ interface Props{
 
 export default function Home({access_type}: Props){
 
-  const mainRoutes = {
-    path: '/subscription/AccessType',
-    element: <ATPage access_type={access_type}/>,
-    children: [
-      {path: '*', element: <Navigate to='/404' />},
-      {path: '/subscription/queue', element: <Navigate to='/subscription/queue' />},
-    ],
-  };
+  // const mainRoutes = {
+  //   path: '/subscription/AccessType',
+  //   element: <ATPage access_type={access_type}/>,
+  //   children: [
+  //     {path: '*', element: <Navigate to='/404' />},
+  //     {path: '/subscription/queue', element: <Navigate to='/subscription/queue' />},
+  //   ],
+  // };
 
-  const queueRoutes = {
-    path: '/subscription/queue',
-    element: <Queue />,
-    children: [
-      {path: '*', element: <Navigate to='/404' />},
-    ],
-  };
+  // const queueRoutes = {
+  //   path: '/subscription/queue',
+  //   element: <Queue />,
+  //   children: [
+  //     {path: '*', element: <Navigate to='/404' />},
+  //   ],
+  // };
 
-  const RouterLink = () => {
-    let routes = useRoutes([mainRoutes, queueRoutes])
-    return routes;
-  };
+  // const RouterLink = () => {
+  //   let routes = useRoutes([mainRoutes, queueRoutes])
+  //   return routes;
+  // };
 
   return (
 
@@ -41,30 +41,28 @@ export default function Home({access_type}: Props){
           <title>Subscription system</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <BrowserRouter>
 
         <Header />
-        <RouterLink />
-        </BrowserRouter>
+        <ATPage access_type={access_type}/>
 
       </div>
   );
 }
 
-export const getServerSideProps = async () => {
+// export const getServerSideProps = async () => {
   
-  var access_type
+//   var access_type
 
-  await fetch('http://localhost:3001/api')
-			.then(response => {
-				return response.json();
-			}).then(result => {
-				access_type = JSON.stringify(result)
-			});
+//   await fetch('http://localhost:3001/api')
+// 			.then(response => {
+// 				return response.json();
+// 			}).then(result => {
+// 				access_type = JSON.stringify(result)
+// 			});
 
-  return {
-    props: {
-      access_type,
-    },
-  };
-};
+//   return {
+//     props: {
+//       access_type,
+//     },
+//   };
+// };
